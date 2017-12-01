@@ -1,5 +1,5 @@
-Hi <%= @user.name %>,
+Hallo <%= @user.name %>,
 
-Welcome to the Sample App! Click on the link below to activate your account:
+Willkommen bei Claim Companion. Bitte klicken Sie auf den Link, um Ihre Aktivierung abzuschließen:
 
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
