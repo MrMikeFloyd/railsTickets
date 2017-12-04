@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :documents
+  resources :pictures
+  resources :claim_statuses
+  resources :claim_types
+  resources :claims
   root   'static_pages#home'
   get    '/about',   to: 'static_pages#about'
   get    '/contact', to: 'static_pages#contact'
