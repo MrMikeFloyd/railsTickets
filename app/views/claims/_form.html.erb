@@ -3,10 +3,17 @@
     <%= form_for(@claim) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
+        <%= f.label "Claimtyp" %>
+        <%= f.select :claim_type, options_for_select(
+            ClaimType.all.map {|c| [c.name, c.id]}),
+            { :include_blank => "Bitte Typen wählen"},
+            {:class => "form-control"}
+        %>
+
         <%= f.label "Beschreibung" %>
         <%= f.text_field :description, class: 'form-control' %>
 
-        <%= f.submit "Aktualisieren", class: "btn btn-primary" %>
+        <%= f.submit "Speichern", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

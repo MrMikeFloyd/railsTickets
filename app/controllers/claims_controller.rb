@@ -1,7 +1,6 @@
 class ClaimsController < ApplicationController
   before_action :logged_in_user
   before_action :set_claim, only: [:show, :edit, :update, :destroy]
-  #before_action :set_insert_user, only: :create
 
   # GET /claims
   # GET /claims.json
@@ -33,7 +32,8 @@ class ClaimsController < ApplicationController
       flash[:success] = "Claim wurde erfolgreich erzeugt."
       redirect_to @claim
     else
-      redirect_to root_url
+      flash.now[:danger] = "Fehler beim Speichern des Claims."
+      render 'new'
     end
   end
 
@@ -45,6 +45,7 @@ class ClaimsController < ApplicationController
       flash[:success] = "Änderungen wurden erfolgreich gespeichert."
       redirect_to @claim
     else
+      flash.now[:danger] = "Fehler beim Aktualisieren des Claims."
       render 'edit'
     end
 

@@ -1,5 +1,37 @@
 <div class="container control-group">
   <br>
-  <p>Mit diesem Claim assoziierte Fotos:</p>
+
+  <% unless @claim.pictures.blank? %>
+    <p>Mit diesem Claim assoziierte Fotos:</p>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Erstellungsdatum:</th>
+        <th>Dateiname:</th>
+        <th>Aktionen:</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @claim.pictures.each do |picture| %>
+          <tr>
+            <td><%= picture.created_at %></td>
+            <td><%= picture.file %></td>
+            <td>
+              <%= link_to 'Anzeigen', picture, class: "btn btn-default btn-sm" %>
+              <%= link_to 'Löschen', picture, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Sind sie sicher?' } %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+      <p>Dem Claim wurden noch keine Fotos angefügt.</p>
+  <% end %>
+
   </p>
+</div>
+<div class="container control-group">
+  <br>
+  <%= link_to 'Foto hinzufügen', new_picture_path(:claim => @claim.id), class: "btn btn-primary" %>
+
 </div>
