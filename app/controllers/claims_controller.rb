@@ -1,11 +1,11 @@
 class ClaimsController < ApplicationController
+  before_action :logged_in_user
   before_action :set_claim, only: [:show, :edit, :update, :destroy]
   #before_action :set_insert_user, only: :create
 
   # GET /claims
   # GET /claims.json
   def index
-    #@claims = Claim.all
     @claims = Claim.paginate(page: params[:page])
   end
 

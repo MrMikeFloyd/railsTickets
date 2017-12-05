@@ -1,7 +1,7 @@
 class ClaimStatus < ApplicationRecord
 
   # Relationships
-  has_one :claim
+  has_many :claims
 
 
 end

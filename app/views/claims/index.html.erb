@@ -2,31 +2,35 @@
 
 <h1>Claims</h1>
 
-<table>
-  <thead>
+<%= will_paginate %>
+
+<div class="container">
+
+  <table class="table table-hover">
+    <thead>
     <tr>
-      <th>Description</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th>Typ</th>
+      <th>Beschreibung</th>
+      <th>Status</th>
+      <th>Erstellungsdatum</th>
+      <th>Aktionen</th>
     </tr>
-  </thead>
+    </thead>
+    <tbody>
+      <% @claims.each do |claim| %>
+        <tr>
+          <td><%= claim.id %></td>
+          <td><%= claim.claim_type.name %></td>
+          <td><%= claim.description %></td>
+          <td><%= claim.claim_status.name %></td>
+          <td><%= claim.created_at %></td>
+          <td><%= link_to 'Anzeigen', claim, class: "btn btn-default btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= will_paginate %>
+</div>
 
-<ul class="users">
-
-  <ul class="claims">
-    <% @claims.each do |claim| %>
-        <li><%= claim.description %></li>
-        <li><%= link_to 'Show', claim %></li>
-        <li><%= link_to 'Edit', edit_claim_path(claim) %></li>
-        <li><%= link_to 'Destroy', claim, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-    <% end %>
-  </ul>
-
-
-
-</ul>
-
-<%= will_paginate %>
-
-<%= link_to 'New Claim', new_claim_path %>
+<%= link_to 'Neuen Claim erfassen', new_claim_path, class: "btn btn-primary" %>

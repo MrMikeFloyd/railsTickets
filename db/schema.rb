@@ -33,9 +33,7 @@ ActiveRecord::Schema.define(version: 20171204154309) do
     t.string "insert_user"
     t.string "update_user"
     t.integer "claim_type_id"
-    t.integer "status_id"
-    t.integer "picture_id"
-    t.integer "document_id"
+    t.integer "claim_status_id"
   end
 
   create_table "documents", force: :cascade do |t|
