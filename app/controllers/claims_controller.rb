@@ -40,6 +40,7 @@ class ClaimsController < ApplicationController
   # PATCH/PUT /claims/1
   # PATCH/PUT /claims/1.json
   def update
+    @claim.set_update_user(current_user)
     if @claim.update(claim_params)
       flash[:success] = "Änderungen wurden erfolgreich gespeichert."
       redirect_to @claim

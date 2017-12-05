@@ -15,11 +15,18 @@ class Claim < ApplicationRecord
 
   # Local methods
 
-  # Gibt die E-Mailadresse des aktuellen Users zurück
+  # Setzt die Mailadresse des aktuellen Users beim Insert.
   def set_insert_user(user)
     logger.info("Setting insert user.")
     insert_user = User.find_by(id: user.id)
     self.insert_user = insert_user.email
+  end
+
+  # Setzt die Mailadresse des aktuellen Users beim Update.
+  def set_update_user(user)
+    logger.info("Setting update user.")
+    update_user = User.find_by(id: user.id)
+    self.update_user = update_user.email
   end
 
 

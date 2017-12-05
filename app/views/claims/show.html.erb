@@ -1,9 +1,86 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @claim.description %>
-</p>
+<h1>Claim-Details</h1>
+<hr />
 
-<%= link_to 'Edit', edit_claim_path(@claim) %> |
-<%= link_to 'Back', claims_path %>
+<h4>Kopfdaten</h4>
+<div class="container">
+  <div class="row" align="center">
+    <div class="col-sm-7">
+      <table class="table table-hover">
+        <tbody>
+        <tr>
+          <td><strong>ID:</strong></td>
+          <td><%= @claim.id %></td>
+        </tr>
+        <tr>
+          <td><strong>Typ</strong></td>
+          <td><%= @claim.claim_type.name %></td>
+        </tr>
+        <tr>
+          <td><strong>Erstellungszeitpunkt:</strong></td>
+          <td><%= @claim.created_at %></td>
+        </tr>
+        <tr>
+          <td><strong>Ersteller:</strong></td>
+          <td><%= @claim.insert_user %></td>
+        </tr>
+        <% unless @claim.updated_at ==  @claim.created_at %>
+            <tr>
+              <td><strong>Zuletzt bearbeitet:</strong></td>
+              <td><%= @claim.updated_at %></td>
+            </tr>
+            <tr>
+              <td><strong>Letzter Bearbeiter:</strong></td>
+              <td><%= @claim.update_user %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+    <br class="col-sm-5">
+      <strong>Beschreibung:</strong>
+      <textarea class="form-control" style="max-width: 40%" rows=8 readonly="true"><%= @claim.description %></textarea>
+    </div>
+</div>
+<%= link_to 'zurück', claims_path, class: "btn btn-default" %>
+<%= link_to 'Daten bearbeiten', edit_claim_path(@claim), class: "btn btn-primary" %>
+<hr />
+
+<div class="container"><h4>Weitere Informationen und Aktionen</h4></div>
+<div class="container">
+  <ul  class="nav nav-tabs">
+    <li class="active">
+      <a  href="#actions" data-toggle="tab">Aktionen</a>
+    </li>
+    <li><a href="#research" data-toggle="tab">Recherche</a>
+    </li>
+    <li><a href="#photos" data-toggle="tab">Fotos</a>
+    </li>
+    <li><a href="#docs" data-toggle="tab">Dokumente</a>
+    </li>
+  </ul>
+  <div class="tab-content clearfix">
+    <div class="tab-pane active" id="actions">
+      <%= render 'claims/actions', claim: @claim %>
+    </div>
+    <div class="tab-pane" id="research">
+      <%= render 'claims/research', claim: @claim %>
+    </div>
+    <div class="tab-pane" id="photos">
+      <%= render 'claims/photos', claim: @claim %>
+    </div>
+    <div class="tab-pane" id="docs">
+      <%= render 'claims/docs', claim: @claim %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+<div class="container control-group">
+  <br>
+  <p>Claim abschließen oder löschen.</p>
+  <p>
+    <td><%= link_to 'Abschließen', edit_claim_path(@claim), class: "btn btn-success btn-sm" %></td>
+    <td><%= link_to 'Löschen', @claim, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %></td>
+  </p>
+</div>
+
