@@ -1,7 +1,5 @@
-
-class PictureUploader < CarrierWave::Uploader::Base
+class DocumentUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_to_limit: [400, 400]
 
   if Rails.env.production?
     storage :fog
@@ -17,6 +15,6 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w(pdf docx odt txt)
   end
 end

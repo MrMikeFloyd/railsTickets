@@ -1,5 +1,37 @@
 <div class="container control-group">
   <br>
-  <p>Mit diesem Claim assoziierte Dokumente:</p>
+
+  <% unless @claim.documents.blank? %>
+      <p>Mit diesem Claim assoziierte Dokumente:</p>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Erstellungsdatum:</th>
+          <th>Bemerkung:</th>
+          <th>Aktionen:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @claim.documents.each do |doc| %>
+            <tr>
+              <td><%= doc.created_at %></td>
+              <td><%= doc.description %></td>
+              <td>
+                <%= link_to 'Anzeigen', doc, class: "btn btn-default btn-sm" %>
+                <%= link_to 'Löschen', doc, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+  <% else %>
+      <p>Dem Claim wurden noch keine Dokumente angefügt.</p>
+  <% end %>
+
   </p>
+</div>
+<div class="container control-group">
+  <br>
+  <%= link_to 'Dokument hinzufügen', new_document_path(:claim => @claim.id), class: "btn btn-primary" %>
+
 </div>

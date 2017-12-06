@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204154309) do
+ActiveRecord::Schema.define(version: 20171206092615) do
 
   create_table "claim_statuses", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "value"
   end
 
   create_table "claim_types", force: :cascade do |t|

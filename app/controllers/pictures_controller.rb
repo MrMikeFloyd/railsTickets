@@ -27,13 +27,18 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     @picture.claim = get_current_claim
+    # If the associated Claim is still new, set it in progress
+    if(@picture.claim.claim_status == ClaimStatus.get_initial)
+      @picture.claim.set_in_progress
+      @picture.claim.save # TODO: Das sollte man nicht hier machen müssen. Gucken, wie ich das ins Model bekomme
+    end
 
     if @picture.save
       flash[:success] = "Fotodatei wurde erfolgreich gespeichert."
-      redirect_to @picture
+      redirect_to get_current_claim
     else
       flash.now[:danger] = "Beim Speichern der Fotodatei ist ein Fehler aufgetreten."
-      render new
+      render 'new'
     end
   end
 
@@ -42,10 +47,10 @@ class PicturesController < ApplicationController
   def update
     if @picture.update(picture_params)
       flash[:success] = "Fotodatei wurde erfolgreich aktualisiert."
-      redirect_to @picture
+      redirect_to get_current_claim
     else
       flash.now[:danger] = "Bei der Aktualisierung der Fotodatei ist ein Fehler aufgetreten."
-      render edit
+      render 'edit'
     end
   end
 
@@ -54,7 +59,7 @@ class PicturesController < ApplicationController
   def destroy
     @picture.destroy
     flash[:success] = "Fotodatei wurde erfolgreich gelöscht."
-    redirect_to claims_url
+    redirect_to get_current_claim
   end
 
   private

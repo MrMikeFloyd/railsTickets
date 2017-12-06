@@ -1,27 +1,10 @@
-<%= form_with(model: document, local: true) do |form| %>
-  <% if document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
-
-      <ul>
-      <% document.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for(@document) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_area :description, placeholder: "Eine Beschreibung eingeben..." %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :file %>
-    <%= form.text_field :file, id: :document_file %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :document_description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <span class="document">
+      <%= f.file_field :file %>
+    </span>
+    <%= f.submit "Speichern", class: "btn btn-primary" %>
 <% end %>

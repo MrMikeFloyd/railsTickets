@@ -22,10 +22,11 @@ class ClaimsController < ApplicationController
   def edit
   end
 
-  # POST /claims
-  # POST /claims.json
+  # Creates a new claim
+  # the current user is stored with the object
   def create
     @claim = Claim.new(claim_params)
+    @claim.claim_status = ClaimStatus.get_initial
     @claim.set_insert_user(current_user) #User ID im Claim setzen
 
     if @claim.save
@@ -37,9 +38,13 @@ class ClaimsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /claims/1
-  # PATCH/PUT /claims/1.json
+  # Updating the current claim record
+  # Automatically sets the status of the claim to
+  # 'In Progress', if it is still 'New'
   def update
+    if(@claim.claim_status == ClaimStatus.get_initial)
+      @claim.set_in_progress
+    end
     @claim.set_update_user(current_user)
     if @claim.update(claim_params)
       flash[:success] = "Änderungen wurden erfolgreich gespeichert."
@@ -68,6 +73,6 @@ class ClaimsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def claim_params
-      params.require(:claim).permit(:description)
+      params.require(:claim).permit(:description, :claim_type_id)
     end
 end
