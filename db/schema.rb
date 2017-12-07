@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206092615) do
+ActiveRecord::Schema.define(version: 20171207155123) do
 
   create_table "claim_statuses", force: :cascade do |t|
     t.string "name"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20171206092615) do
     t.string "insert_user"
     t.string "update_user"
     t.integer "claim_type_id"
-    t.integer "claim_status_id"
+    t.integer "status"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -48,6 +48,20 @@ ActiveRecord::Schema.define(version: 20171206092615) do
   create_table "pictures", force: :cascade do |t|
     t.string "file"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "claim_id"
+  end
+
+  create_table "solutions", force: :cascade do |t|
+    t.string "load_id"
+    t.text "pid_info"
+    t.text "description"
+    t.string "pallet_id"
+    t.integer "number_of_pallets"
+    t.string "box_id"
+    t.string "serial_number_example"
+    t.integer "damage_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "claim_id"

@@ -1,10 +1,20 @@
-<%= form_for(@document) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="field">
-      <%= f.text_area :description, placeholder: "Eine Beschreibung eingeben..." %>
-    </div>
-    <span class="document">
-      <%= f.file_field :file %>
-    </span>
-    <%= f.submit "Speichern", class: "btn btn-primary" %>
-<% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(@document) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field">
+          <%= f.text_area :description, placeholder: "Eine Beschreibung eingeben..." %>
+        </div>
+        <span class="document">
+          <%= f.file_field :file %>
+        </span>
+        <%= f.submit "Speichern", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<div class="row top5">
+  <div class="col-md-6 col-md-offset-3">
+    <%= link_to 'Abbrechen', @claim, class:"btn btn-default btn-block" %>
+  </div>
+</div>

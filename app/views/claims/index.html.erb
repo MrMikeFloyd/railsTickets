@@ -21,7 +21,7 @@
         <tr>
           <td><%= claim.id %></td>
           <td><%= claim.claim_type.name %></td>
-          <td><%= claim.claim_status.name %></td>
+          <td><%= claim.status %></td>
           <td><%= claim.created_at %></td>
           <td><%= link_to 'Anzeigen', claim, class: "btn btn-default btn-sm" %></td>
         </tr>

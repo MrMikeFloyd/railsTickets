@@ -13,12 +13,12 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # Store the current claim in the session when a new picture is about to be added to it
+    # Store the current claim in the session when a new object [picture|document|solution] is about to be added to it
     def set_claim_in_session
       unless params[:claim].nil?
         session[:claim] = params[:claim]
       else
-        raise "Error: Unable to save the current event in the session as it's not embedded in the request."
+        raise "Error: Unable to save the current claim in the session as it's not embedded in the request."
       end
     end
 

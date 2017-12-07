@@ -1,10 +1,12 @@
 class ClaimsController < ApplicationController
   before_action :logged_in_user
   before_action :set_claim, only: [:show, :edit, :update, :destroy]
+  before_action :set_solution, only: [:show, :edit, :update]
 
   # GET /claims
   # GET /claims.json
   def index
+    # Pagination verwenden. Die Anzahl der Einträge pro Seite wird im Model verwaltet
     @claims = Claim.paginate(page: params[:page])
   end
 
@@ -26,7 +28,6 @@ class ClaimsController < ApplicationController
   # the current user is stored with the object
   def create
     @claim = Claim.new(claim_params)
-    @claim.claim_status = ClaimStatus.get_initial
     @claim.set_insert_user(current_user) #User ID im Claim setzen
 
     if @claim.save
@@ -39,12 +40,8 @@ class ClaimsController < ApplicationController
   end
 
   # Updating the current claim record
-  # Automatically sets the status of the claim to
-  # 'In Progress', if it is still 'New'
   def update
-    if(@claim.claim_status == ClaimStatus.get_initial)
-      @claim.set_in_progress
-    end
+
     @claim.set_update_user(current_user)
     if @claim.update(claim_params)
       flash[:success] = "Änderungen wurden erfolgreich gespeichert."
@@ -53,8 +50,6 @@ class ClaimsController < ApplicationController
       flash.now[:danger] = "Fehler beim Aktualisieren des Claims."
       render 'edit'
     end
-
-
   end
 
   # DELETE /claims/1
@@ -69,6 +64,13 @@ class ClaimsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_claim
       @claim = Claim.find(params[:id])
+    end
+
+    # Sets the claim's solution, if it has one
+    def set_solution
+      if(@claim.has_solution?)
+        @solution = Solution.find_by_id(@claim.solution)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

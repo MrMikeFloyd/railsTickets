@@ -60,9 +60,17 @@
   <%- # ====== Zweite Zeile mit Navigationselementen ====== -%>
   <div class="row">
     <div class="col-sm-7">
-      <h4>Navigation</h4>
+      <h4>Aktionen</h4>
       <%= link_to 'zurück', claims_path, class: "btn btn-default" %>
-      <%= link_to 'Daten bearbeiten', edit_claim_path(@claim), class: "btn btn-primary" %>
+      <%= link_to 'Kopfdaten bearbeiten', edit_claim_path(@claim), class: "btn btn-primary" %>
+      <% if @solution.nil? %>
+        <%= link_to 'Lösung hinzufügen', new_solution_path(:claim => @claim.id), class: "btn btn-primary" %>
+      <% else  %>
+          <%= link_to 'Lösung bearbeiten', @solution, class: "btn btn-primary" %>
+      <% end %>
+
+      <%= link_to 'Abschließen', edit_claim_path(@claim), class: "btn btn-success" %>
+      <%= link_to 'Löschen', @claim, method: :delete, class: "btn btn-danger", data: { confirm: 'Sind Sie sicher?' } %>
     </div>
     <div class="col-sm-5"></div>
   </div>
@@ -70,35 +78,41 @@
 </div>
 
 <hr />
+
 <%- # ====== Neuer Container mit Tab-Bar zu konkreten Aktionen ====== -%>
-<%- # TODO: Ggf. auch hier in eine entsprechende Row packen (col-sm-12) -%>
-<div class="container"><h4>Weitere Informationen und Aktionen</h4></div>
 <div class="container">
-  <ul  class="nav nav-tabs">
-    <li class="active">
-      <a  href="#actions" data-toggle="tab">Aktionen</a>
-    </li>
-    <li><a href="#research" data-toggle="tab">Recherche</a>
-    </li>
-    <li><a href="#photos" data-toggle="tab">Fotos</a>
-    </li>
-    <li><a href="#docs" data-toggle="tab">Dokumente</a>
-    </li>
-  </ul>
-  <div class="tab-content clearfix">
-    <div class="tab-pane active" id="actions">
-      <%= render 'claims/actions', claim: @claim %>
-    </div>
-    <div class="tab-pane" id="research">
-      <%= render 'claims/research', claim: @claim %>
-    </div>
-    <div class="tab-pane" id="photos">
-      <%= render 'claims/photos', claim: @claim %>
-    </div>
-    <div class="tab-pane" id="docs">
-      <%= render 'claims/docs', claim: @claim %>
+  <%- # ====== Erste Zeile mit Kopfdaten des Claims ====== -%>
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Fotos, Dokumente und Recherche</h4>
     </div>
   </div>
+
+  <%- # ====== Zweite Zeile mit Navigationselementen ====== -%>
+  <div class="row">
+    <div class="col-sm-12">
+      <ul  class="nav nav-tabs">
+        <li class="active"><a href="#photos" data-toggle="tab">Fotos</a>
+        </li>
+        <li><a href="#docs" data-toggle="tab">Dokumente</a>
+        </li>
+        <li><a href="#research" data-toggle="tab">Recherche</a>
+        </li>
+      </ul>
+      <div class="tab-content clearfix">
+        <div class="tab-pane active" id="photos">
+          <%= render 'claims/photos', claim: @claim %>
+        </div>
+        <div class="tab-pane" id="docs">
+          <%= render 'claims/docs', claim: @claim %>
+        </div>
+        <div class="tab-pane" id="research">
+          <%= render 'claims/research', claim: @claim %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 

@@ -16,6 +16,7 @@ class PicturesController < ApplicationController
   # GET /pictures/new
   def new
     @picture = Picture.new
+    @claim = get_current_claim
   end
 
   # GET /pictures/1/edit
@@ -27,11 +28,6 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     @picture.claim = get_current_claim
-    # If the associated Claim is still new, set it in progress
-    if(@picture.claim.claim_status == ClaimStatus.get_initial)
-      @picture.claim.set_in_progress
-      @picture.claim.save # TODO: Das sollte man nicht hier machen müssen. Gucken, wie ich das ins Model bekomme
-    end
 
     if @picture.save
       flash[:success] = "Fotodatei wurde erfolgreich gespeichert."

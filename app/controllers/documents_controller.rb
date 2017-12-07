@@ -16,6 +16,7 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
+    @claim = get_current_claim
   end
 
   # GET /documents/1/edit
@@ -27,12 +28,6 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     @document.claim = get_current_claim
-
-    # If the associated Claim is still new, set it in progress
-    if(@document.claim.claim_status == ClaimStatus.get_initial)
-      @document.claim.set_in_progress
-      @document.claim.save # TODO: Das sollte man nicht hier machen müssen. Gucken, wie ich das ins Model bekomme
-    end
 
     if @document.save
       flash[:success] = "Dokumentendatei wurde erfolgreich gespeichert."

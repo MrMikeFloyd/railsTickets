@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  load_id: MyString
+  pid_info: MyText
+  pallet_id: MyString
+  number_of_pallets: 1
+  box_id: MyString
+  serial_number_example: MyString
+  damage_type: 1
+
+two:
+  load_id: MyString
+  pid_info: MyText
+  pallet_id: MyString
+  number_of_pallets: 1
+  box_id: MyString
+  serial_number_example: MyString
+  damage_type: 1
