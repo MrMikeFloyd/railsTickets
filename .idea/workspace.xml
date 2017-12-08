@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cb02576-be4d-4bd7-b4e2-b88b3c007c00" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/claims_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/claims_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/claim.rb" afterPath="$PROJECT_DIR$/app/models/claim.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/claims/_docs.html.erb" afterPath="$PROJECT_DIR$/app/views/claims/_docs.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/claims/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/claims/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/claims/_photos.html.erb" afterPath="$PROJECT_DIR$/app/views/claims/_photos.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pictures/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/pictures/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pictures/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/pictures/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pictures/show.html.erb" afterPath="$PROJECT_DIR$/app/views/pictures/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -51,8 +45,8 @@
       <file leaf-file-name="custom.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="257" column="0" lean-forward="true" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+            <state relative-caret-position="2786">
+              <caret line="152" column="1" lean-forward="false" selection-start-line="152" selection-start-column="1" selection-end-line="152" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -130,7 +124,6 @@
         <option value="$PROJECT_DIR$/app/uploaders/document_uploader.rb" />
         <option value="$PROJECT_DIR$/app/uploaders/picture_uploader.rb" />
         <option value="$PROJECT_DIR$/config/locales/en.yml" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" />
         <option value="$PROJECT_DIR$/db/migrate/20171207104247_create_solutions.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20171207112135_remove_claim_status_from_claim.rb" />
         <option value="$PROJECT_DIR$/app/models/picture.rb" />
@@ -162,6 +155,7 @@
         <option value="$PROJECT_DIR$/app/models/claim.rb" />
         <option value="$PROJECT_DIR$/app/controllers/claims_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/claims/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" />
       </list>
     </option>
   </component>
@@ -513,7 +507,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="upload&#9;null&#9;null&#10;claim&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/claim.rb&#10;soluti&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/controllers/solutions_controller.rb&#10;applica&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/controllers/application_controller.rb&#10;routes&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/config/routes.rb&#10;routes.&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/config/routes.rb&#10;solution&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/solution.rb&#10;picture&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/picture.rb&#10;docu&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/controllers/documents_controller.rb&#10;pict&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/controllers/pictures_controller.rb&#10;schema&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/db/schema.rb&#10;routes.rb&#9;FILE&#9;file:///var/lib/gems/2.3.0/gems/actionpack-5.1.2/lib/action_dispatch/journey/routes.rb&#10;seeds&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/db/seeds.rb&#10;document&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/document.rb&#10;cust&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/assets/stylesheets/custom.scss&#10;en.yml&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/config/locales/en.yml&#10;claim.rb&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/claim_status.rb&#10;custom.s&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/assets/stylesheets/custom.scss&#10;pictureU&#9;null&#9;null&#10;bootst&#9;null&#9;null&#10;bootstra&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="gemfile&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/Gemfile&#10;upload&#9;null&#9;null&#10;claim&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/claim.rb&#10;soluti&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/controllers/solutions_controller.rb&#10;applica&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/controllers/application_controller.rb&#10;routes&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/config/routes.rb&#10;routes.&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/config/routes.rb&#10;solution&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/solution.rb&#10;picture&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/picture.rb&#10;docu&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/controllers/documents_controller.rb&#10;pict&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/controllers/pictures_controller.rb&#10;schema&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/db/schema.rb&#10;routes.rb&#9;FILE&#9;file:///var/lib/gems/2.3.0/gems/actionpack-5.1.2/lib/action_dispatch/journey/routes.rb&#10;seeds&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/db/seeds.rb&#10;document&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/document.rb&#10;cust&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/assets/stylesheets/custom.scss&#10;en.yml&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/config/locales/en.yml&#10;claim.rb&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/models/claim_status.rb&#10;custom.s&#9;FILE&#9;file:///home/maik/dev/rails/railsTickets/app/assets/stylesheets/custom.scss&#10;pictureU&#9;null&#9;null&#10;bootst&#9;null&#9;null&#10;bootstra&#9;null&#9;null" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -853,12 +847,12 @@
       <workItem from="1512457687553" duration="34175000" />
       <workItem from="1512547952471" duration="20416000" />
       <workItem from="1512634208541" duration="23564000" />
-      <workItem from="1512717399805" duration="18027000" />
+      <workItem from="1512717399805" duration="18738000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126360000" />
+    <option name="totallyTimeSpent" value="127071000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -903,16 +897,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db/migrate/20171207112135_remove_claim_status_from_claim.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="43" lean-forward="false" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/claim_status.rb" />
-    <entry file="file://$PROJECT_DIR$/app/controllers/claim_statuses_controller.rb" />
     <entry file="file://$PROJECT_DIR$/app/models/document.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -1280,10 +1264,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///var/lib/gems/2.3.0/gems/railties-5.1.2/lib/rails/generators/app_base.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="208" column="12" lean-forward="false" selection-start-line="208" selection-start-column="12" selection-end-line="208" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="257" column="0" lean-forward="true" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+        <state relative-caret-position="2786">
+          <caret line="152" column="1" lean-forward="false" selection-start-line="152" selection-start-column="1" selection-end-line="152" selection-end-column="1" />
           <folding />
         </state>
       </provider>
