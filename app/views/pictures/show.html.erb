@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Hochgeladenes Dokument</h2>
+<h1>Hochgeladene Foto-Datei</h1>
 
-<div class="container">
+<div class="container" align="center">
   <span class="content">
     <%= image_tag @picture.file.url %>
   </span>
+  <% @picture.description %>
 </div>
 
-<%= link_to 'Bearbeiten', edit_picture_path(@picture) %> |
-<%= link_to 'Zurück', @picture.claim %>
+<h4>Aktionen</h4>
+<%= link_to 'zurück', @picture.claim, class: "btn btn-default" %>

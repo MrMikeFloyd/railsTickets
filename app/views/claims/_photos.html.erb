@@ -6,9 +6,10 @@
     <table class="table table-hover">
       <thead>
       <tr>
-        <th>Erstellungsdatum:</th>
-        <th>Bemerkung:</th>
-        <th>Aktionen:</th>
+        <th>Erstellungsdatum</th>
+        <th>Bemerkung</th>
+        <th>Dateiname</th>
+        <th>Aktionen</th>
       </tr>
       </thead>
       <tbody>
@@ -16,8 +17,10 @@
           <tr>
             <td><%= picture.created_at %></td>
             <td><%= picture.description %></td>
+            <td><%= picture.file.file.filename %></td>
             <td>
               <%= link_to 'Anzeigen', picture, class: "btn btn-default btn-sm" %>
+              <%= link_to 'Herunterladen', picture.file.url , class: "btn btn-default btn-sm" %>
               <% unless @claim.is_terminated? %>
                 <%= link_to 'Löschen', picture, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
               <% end %>

@@ -8,7 +8,8 @@ class ClaimsController < ApplicationController
   # Anzeige aller Claims
   def index
     # Pagination verwenden. Die Anzahl der Einträge pro Seite wird im Model verwaltet
-    @claims = Claim.paginate(page: params[:page])
+    # Sortiere nach Status und Erstellungsdatum
+    @claims = Claim.order(status: :asc, created_at: :desc).paginate(page: params[:page])
   end
 
   # Konkreten Claim anzeigen

@@ -1,3 +1,4 @@
+# Modelklasse für Claims
 class Claim < ApplicationRecord
 
   # Validations

@@ -4,7 +4,13 @@
         <%= render 'shared/error_messages', object: f.object %>
 
         <%= f.label "Claimtyp" %>
-        <%= f.collection_select(:claim_type_id, ClaimType.all, :id, :name, {}, {:class => "form-control"}) %>
+        <%= f.collection_select(:claim_type_id,
+                                ClaimType.all,
+                                :id,
+                                :name,
+                                {include_blank: true},
+                                {:class => "form-control"})
+        %>
 
         <%= f.label "Beschreibung" %>
         <%= f.text_field(:description, class: 'form-control') %>
