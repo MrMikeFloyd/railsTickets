@@ -6,8 +6,13 @@ Rails.application.routes.draw do
   resources :pictures
   resources :claim_statuses
   resources :claim_types
-  resources :claims
   resources :solutions
+  resources :claims do
+    member do
+      get 'finish' # Claim-Abschluss
+      get 'reopen' # Claim-Wiedereröffnung
+    end
+  end
 
   # Static resources
   root   'static_pages#home'

@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
-  before_action :set_claim_in_session, only: :new
+  #before_action :set_claim_in_session, only: :new
 
   # GET /documents
   # GET /documents.json

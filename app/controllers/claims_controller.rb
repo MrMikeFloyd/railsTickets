@@ -1,34 +1,33 @@
 class ClaimsController < ApplicationController
   before_action :logged_in_user
-  before_action :set_claim, only: [:show, :edit, :update, :destroy]
+  before_action :set_claim_in_session, only: :show # Aktuellen Claim in die Session schreiben, wenn wir einen bestimmten anzeigen
+  before_action :set_claim, only: [:show, :edit, :update, :destroy, :finish, :reopen]
   before_action :set_solution, only: [:show, :edit, :update]
+  before_action :set_update_user, only: [:update, :finish, :reopen]
 
-  # GET /claims
-  # GET /claims.json
+  # Anzeige aller Claims
   def index
     # Pagination verwenden. Die Anzahl der Einträge pro Seite wird im Model verwaltet
     @claims = Claim.paginate(page: params[:page])
   end
 
-  # GET /claims/1
-  # GET /claims/1.json
+  # Konkreten Claim anzeigen
   def show
   end
 
-  # GET /claims/new
+  # Neuerstellung eines Claims
   def new
     @claim = Claim.new
   end
 
-  # GET /claims/1/edit
+  # Editieren eines Claims
   def edit
   end
 
-  # Creates a new claim
-  # the current user is stored with the object
+  # Speicherung eines neuen Claims
   def create
     @claim = Claim.new(claim_params)
-    @claim.set_insert_user(current_user) #User ID im Claim setzen
+    @claim.init_defaults(current_user)
 
     if @claim.save
       flash[:success] = "Claim wurde erfolgreich erzeugt."
@@ -39,10 +38,8 @@ class ClaimsController < ApplicationController
     end
   end
 
-  # Updating the current claim record
+  # Aktualisierung eines existenten Claims
   def update
-
-    @claim.set_update_user(current_user)
     if @claim.update(claim_params)
       flash[:success] = "Änderungen wurden erfolgreich gespeichert."
       redirect_to @claim
@@ -52,18 +49,56 @@ class ClaimsController < ApplicationController
     end
   end
 
-  # DELETE /claims/1
-  # DELETE /claims/1.json
+  # Löschen des Claims
   def destroy
     @claim.destroy
     flash[:success] = "Claim wurde erfolgreich gelöscht."
     redirect_to claims_url
   end
 
+  # Claim-Abschluss
+  def finish
+    @claim.terminate
+    if @claim.save
+      flash[:success] = "Claim wurde erfolgreich abgeschlossen."
+      redirect_to @claim
+    else
+      flash.now[:danger] = "Fehler beim Aktualisieren des Claims."
+      render 'edit'
+    end
+  end
+
+  # Claim-Wiedereröffnung
+  def reopen
+    @claim.set_reopen
+    if @claim.save
+      flash[:success] = "Claim wurde erfolgreich wiedereröffnet."
+      redirect_to @claim
+    else
+      flash.now[:danger] = "Fehler beim Aktualisieren des Claims."
+      render 'edit'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    # Sets the current claim and defines the behaviour for forms
     def set_claim
       @claim = Claim.find(params[:id])
+      define_form_behaviour(@claim)
+    end
+
+    # Writes this claim into the session
+    def set_claim_in_session
+      session[:claim] = params[:id]
+    end
+
+    # Setzt die Mailadresse des aktuellen Users.
+    def set_update_user
+      logger.info("Setting update user.")
+      update_user = current_user
+      @claim.update_user = update_user.email
     end
 
     # Sets the claim's solution, if it has one

@@ -12,6 +12,7 @@
       <th>ID</th>
       <th>Typ</th>
       <th>Status</th>
+      <th>Lösung?</th>
       <th>Erstellungsdatum</th>
       <th>Aktionen</th>
     </tr>
@@ -22,6 +23,7 @@
           <td><%= claim.id %></td>
           <td><%= claim.claim_type.name %></td>
           <td><%= claim.status %></td>
+          <td><span class="<%= claim.has_solution? ? 'glyphicon glyphicon-ok' : 'glyphicon glyphicon-remove' %>"></span></td>
           <td><%= claim.created_at %></td>
           <td><%= link_to 'Anzeigen', claim, class: "btn btn-default btn-sm" %></td>
         </tr>

@@ -18,7 +18,9 @@
             <td><%= picture.description %></td>
             <td>
               <%= link_to 'Anzeigen', picture, class: "btn btn-default btn-sm" %>
-              <%= link_to 'Löschen', picture, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
+              <% unless @claim.is_terminated? %>
+                <%= link_to 'Löschen', picture, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
+              <% end %>
             </td>
           </tr>
       <% end %>
@@ -32,6 +34,8 @@
 </div>
 <div class="container control-group">
   <br>
-  <%= link_to 'Foto hinzufügen', new_picture_path(:claim => @claim.id), class: "btn btn-primary" %>
+  <% unless @claim.is_terminated? %>
+    <%= link_to 'Foto hinzufügen', new_picture_path(:claim => @claim.id), class: "btn btn-primary" %>
+  <% end %>
 
 </div>

@@ -62,15 +62,24 @@
     <div class="col-sm-7">
       <h4>Aktionen</h4>
       <%= link_to 'zurück', claims_path, class: "btn btn-default" %>
-      <%= link_to 'Kopfdaten bearbeiten', edit_claim_path(@claim), class: "btn btn-primary" %>
-      <% if @solution.nil? %>
-        <%= link_to 'Lösung hinzufügen', new_solution_path(:claim => @claim.id), class: "btn btn-primary" %>
+      <%- # Nur nicht abgeschlossene Claims können bearbeitet werden -%>
+      <% unless @claim.is_terminated? %>
+          <%= link_to 'Kopfdaten bearbeiten', edit_claim_path(@claim), class: "btn btn-primary" %>
+          <%- # Je nach Vorhandensein einer Lösung 'hinzufügen' oder 'bearbeiten' anbieten -%>
+          <% if @solution.nil? %>
+            <%= link_to 'Lösung hinzufügen', new_solution_path(:claim => @claim.id), class: "btn btn-primary" %>
+          <% else  %>
+              <%= link_to 'Lösung bearbeiten', @solution, class: "btn btn-primary" %>
+              <%= link_to 'Abschließen', finish_claim_path(:claim => @claim.id), class: "btn btn-success", data: { confirm: 'Claim wirklich abschließen?' } %>
+          <% end %>
+          <%= link_to 'Löschen', @claim, method: :delete, class: "btn btn-danger", data: { confirm: 'Sind Sie sicher?' } %>
       <% else  %>
-          <%= link_to 'Lösung bearbeiten', @solution, class: "btn btn-primary" %>
-      <% end %>
+          <%- # Abgeschlossene Claims können wiedereröffnet werden, und ihre Lösung angezeigt -%>
+          <%= link_to 'Lösung anzeigen', @solution, class: "btn btn-primary" %>
+          <%= link_to 'Wiedereröffnen', reopen_claim_path(:claim => @claim.id), class: "btn btn-warning", data: { confirm: 'Claim wirklich wiedereröffnen?' } %>
+      <% end  %>
 
-      <%= link_to 'Abschließen', edit_claim_path(@claim), class: "btn btn-success" %>
-      <%= link_to 'Löschen', @claim, method: :delete, class: "btn btn-danger", data: { confirm: 'Sind Sie sicher?' } %>
+
     </div>
     <div class="col-sm-5"></div>
   </div>

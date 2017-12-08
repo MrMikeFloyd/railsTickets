@@ -3,37 +3,40 @@
     <%= form_for(@solution) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
-        <%= f.label "Load ID" %>
-        <%= f.text_field(:load_id, class: 'form-control') %>
+        <%= f.label :load_id, "Load ID" %>
+        <%= f.text_field(:load_id, :disabled => @readonly_form, class: 'form-control') %>
 
-        <%= f.label "PID-Informationen" %>
-        <%= f.text_area(:pid_info, class: 'form-control') %>
+        <%= f.label :pid_info, "PID-Informationen" %>
+        <%= f.text_area(:pid_info, :disabled => @readonly_form, class: 'form-control') %>
 
-        <%= f.label "Beschreibung" %>
-        <%= f.text_field(:description, class: 'form-control') %>
+        <%= f.label :description, "Beschreibung" %>
+        <%= f.text_field(:description, :disabled => @readonly_form, class: 'form-control') %>
 
-        <%= f.label "Paletten-ID" %>
-        <%= f.text_area(:pallet_id, class: 'form-control') %>
+        <%= f.label :pallet_id, "Paletten-ID" %>
+        <%= f.text_area(:pallet_id, :disabled => @readonly_form, class: 'form-control') %>
 
-        <%= f.label "Anzahl Paletten" %>
-        <%= f.number_field(:number_of_pallets, class: 'form-control') %>
+        <%= f.label :number_of_pallets, "Anzahl Paletten" %>
+        <%= f.number_field(:number_of_pallets, :disabled => @readonly_form, class: 'form-control') %>
 
-        <%= f.label "Box ID" %>
-        <%= f.text_field(:box_id, class: 'form-control') %>
+        <%= f.label :box_id, "Box ID" %>
+        <%= f.text_field(:box_id, :disabled => @readonly_form, class: 'form-control') %>
 
-        <%= f.label "Seriennummernbeispiel" %>
-        <%= f.text_field(:serial_number_example, class: 'form-control') %>
+        <%= f.label :serial_number_example, "Seriennummernbeispiel" %>
+        <%= f.text_field(:serial_number_example, :disabled => @readonly_form, class: 'form-control') %>
 
-        <%= f.label "Art der Beschädigung" %>
-        <%= f.label :damage_type %>
+        <%= f.label :damage_type, "Art der Beschädigung" %>
         <%= f.select(
                 :damage_type,
                 options_for_select(Solution.damage_types.map {|k, v| [k.humanize.capitalize, k]}),
                 {include_blank: true},
-                {:class => "form-control"}
-            ) %>
-
-        <%= f.submit "Speichern", class: "btn btn-primary" %>
+                {:disabled => @readonly_form,
+                 :class => "form-control"
+                }
+            )
+        %>
+        <% unless @readonly_form %>
+          <%= f.submit "Speichern", class: "btn btn-primary" %>
+        <% end  %>
     <% end %>
   </div>
 </div>

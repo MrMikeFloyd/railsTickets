@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :set_claim_in_session, only: :new
+  #before_action :set_claim_in_session, only: :new
 
   # GET /pictures
   # GET /pictures.json

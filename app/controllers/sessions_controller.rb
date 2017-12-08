@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
 
+  # Anzeige des Login-Bildschirms
   def new
   end
 
+  # Login des Users
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
@@ -17,11 +19,12 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     else
-      flash.now[:danger] = 'Benutzername oder Passwort ungültig!' # Not quite right!
+      flash.now[:danger] = 'Benutzername oder Passwort ungültig!'
       render 'new'
     end
   end
 
+  # Logout
   def destroy
     log_out if logged_in?
     redirect_to root_url
