@@ -23,3 +23,12 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
+
+# Verbindung gegen LGI-KNZ
+knz:
+  adapter: oracle_enhanced
+  host: oraknz.lgigroup.local
+  port: 1521
+  database: knz
+  username: prod_bon_ro
+  password: nice2have

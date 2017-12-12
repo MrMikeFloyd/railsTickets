@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207155123) do
+ActiveRecord::Schema.define(version: 20171212160028) do
 
   create_table "claim_statuses", force: :cascade do |t|
     t.string "name"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 20171207155123) do
   create_table "documents", force: :cascade do |t|
     t.string "file"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "claim_id"
+  end
+
+  create_table "investigations", force: :cascade do |t|
+    t.text "query_result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "claim_id"

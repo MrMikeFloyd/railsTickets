@@ -10,6 +10,7 @@ class Claim < ApplicationRecord
   belongs_to :claim_type
   has_many :pictures, dependent: :destroy
   has_many :documents, dependent: :destroy
+  has_many :investigations, dependent: :destroy
   has_one :solution, dependent: :destroy
 
   # Claimstatus
