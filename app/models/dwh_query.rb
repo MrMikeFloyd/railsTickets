@@ -6,6 +6,7 @@ class DwhQuery < ActiveRecord::Base
   # Führt den "DoubleSerNoCheck"-Report aus und liefert das Resultat zurück.
   # Dieses ist vom Typ ActiveRecord::Result
   def self.getDoubleSerNoCheck(shpt_req_nr)
+    logger.info("Setze SQL gegen KNZ ab (Parameter: '#{shpt_req_nr}')")
     result=connection.select_all("SELECT DISTINCT BON_COLLI_INFO_VIEW.SHPT_REQ_NR,
         BON_COLLI_INFO_VIEW.COLLI_NR,
         BON_COLLI_INFO_VIEW.INFO_NR,

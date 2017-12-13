@@ -1,7 +1,7 @@
 class Document < ApplicationRecord
 
   # Validations
-  validates :description, presence:true
+  validates :description, :file, presence:true
 
   # Relationships
   belongs_to :claim

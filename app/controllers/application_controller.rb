@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # Store the current claim in the session when a new object [picture|document|solution] is about to be added to it
+    # Store the current claim in the session. Set only during claim display
     #def set_claim_in_session
     #  unless params[:claim].nil?
     #    session[:claim] = params[:claim]

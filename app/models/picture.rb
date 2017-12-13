@@ -3,7 +3,7 @@ class Picture < ApplicationRecord
   # TODO: Gegebenenfalls mit Documents zusammen legen und um DOCUMENT_TYPE o.ä. ergänzen
 
   # Validations
-  validates :description, presence:true
+  validates :description, :file, presence:true
 
   # Relationships
   belongs_to :claim

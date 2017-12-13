@@ -2,11 +2,10 @@ Rails.application.routes.draw do
 
   # Dynamic resources
   resources :users
-  resources :documents
-  resources :pictures
-  resources :claim_statuses
-  resources :claim_types
-  resources :solutions
+  resources :documents,       only: [:new, :create, :destroy]
+  resources :pictures,        only: [:show, :new, :create, :destroy]
+  resources :solutions,       only: [:show, :new, :create, :destroy]
+  resources :investigations,  only: [:show, :new, :create, :destroy]
   resources :claims do
     member do
       get 'finish' # Claim-Abschluss

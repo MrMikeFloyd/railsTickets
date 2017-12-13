@@ -27,7 +27,8 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
-    @document.claim = get_current_claim
+    @claim = get_current_claim
+    @document.claim = @claim
 
     if @document.save
       flash[:success] = "Dokumentendatei wurde erfolgreich gespeichert."

@@ -1,5 +1,40 @@
 <div class="container control-group">
   <br>
-  <p>Hier kommt der kontextabhängige Kram zum Auslösen der Reports hin.</p>
-  <p>Welchen Kontext haben wir hier? => <%= @claim.claim_type.name %></p>
+
+  <% unless @claim.investigations.blank? %>
+
+      Mit diesem Claim assoziierte Rechercheberichte:
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Erstellungsdatum</th>
+            <th>Aktionen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @claim.investigations.each do |investigation| %>
+            <tr>
+              <td><%= investigation.created_at %></td>
+              <td>
+                <%= link_to 'Anzeigen', investigation, class: "btn btn-default btn-sm" %>
+                <% unless @claim.is_terminated? %>
+                  <%= link_to 'Löschen', investigation, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Sind sie Sicher?' } %>
+                <% end  %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+  <% else %>
+    <p>Dem Claim wurden noch keine Rechercheberichte angefügt.</p>
+  <% end  %>
+
+</div>
+<div class="container control-group">
+  <br>
+  <% unless @claim.is_terminated? %>
+      <%= link_to 'Recherche hinzufügen', new_investigation_path(:claim => @claim.id), class: "btn btn-primary" %>
+  <% end %>
+
 </div>

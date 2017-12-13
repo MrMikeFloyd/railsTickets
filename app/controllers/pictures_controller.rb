@@ -27,7 +27,8 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
-    @picture.claim = get_current_claim
+    @claim = get_current_claim
+    @picture.claim = @claim
 
     if @picture.save
       flash[:success] = "Fotodatei wurde erfolgreich gespeichert."
