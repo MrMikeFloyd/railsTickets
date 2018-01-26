@@ -2,8 +2,8 @@
 class Investigation < ApplicationRecord
 
   # Validations
-  # Sowohl ein Query-Parameter als auch ein Resultat sind zur Speicherung nötig
-  validates :query_param, presence: true
+  # Cutom-Validator: Mindestens ein Query-Parameter müssen gesetzt sein
+  validate :at_least_one_query_param_set
 
   # Relationships
   belongs_to :claim
@@ -12,15 +12,10 @@ class Investigation < ApplicationRecord
 
   # Führt eine Abfrage aus und speichert das Resultat.
   def perform_query
-    logger.info("Query Parameter: #{self.query_param}")
-    unless self.query_param.empty?
-      logger.info("Iniziiere DWH-Query.')")
-      self.query_result = DwhQuery.getDoubleSerNoCheck(self.query_param).to_hash
-      logger.info("Query abgeschlossen - speichere Investigation.")
-      self.save
-    else
-      raise "Query-Parameter ist nil."
-    end
+    logger.info("Iniziiere DWH-Query mit Parametern: '#{self.query_param}'; '#{self.query_param_2}'")
+    self.query_result = DwhQuery.getDoubleSerNoCheck(self.query_param, self.query_param_2).to_hash
+    logger.info("Query abgeschlossen - speichere Investigation.")
+    self.save
   end
 
   # Überschriebener Getter für Query Result, um ein Hash anstelle eines Strings
@@ -32,10 +27,18 @@ class Investigation < ApplicationRecord
     end
   end
 
-  # After save callback - Status des Claims auf "in Bearbeitung setzen" wenn nötig
+  # After save callback - Status des Claims auf "in Bearbeitung" wenn nötig
   after_save do
     claim.set_in_progress
     claim.save
+  end
+
+  # Stellt sicher, dass >=1 der Abfrageparameter gesetzt ist
+  # Custom validation, siehe http://guides.rubyonrails.org/active_record_validations.html#custom-validators
+  def at_least_one_query_param_set
+    if(query_param.blank? && query_param_2.blank?)
+      errors.add(:query_param, "Einer oder beide der Abfrageparameter müssen gesetzt sein.")
+    end
   end
 
 end

@@ -3,7 +3,7 @@ class Claim < ApplicationRecord
 
   # Validations
   # Description and user name of initial creator always have to be set
-  validates :description, length: {maximum: 250}, presence:true
+  validates :description, length: {maximum: 500}, presence:true
   validates :insert_user, :status, presence:true
 
   # Relationships

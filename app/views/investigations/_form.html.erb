@@ -4,8 +4,12 @@
     <%= form_for(@investigation) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="field">
-          <%= f.label :query_param, "ShptReqNr:" %>
+          <%= f.label :query_param, "Pack-ID:" %>
           <%= f.text_field :query_param, class: "form-control" %>
+        </div>
+        <div class="field">
+          <%= f.label :query_param_2, "Colli-Nr:" %>
+          <%= f.text_field :query_param_2, class: "form-control" %>
         </div>
         <%= f.submit "Abfrage starten", class: "btn btn-primary" %>
     <% end %>

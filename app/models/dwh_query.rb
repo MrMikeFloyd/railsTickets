@@ -3,32 +3,49 @@ class DwhQuery < ActiveRecord::Base
   self.abstract_class = true # Abstrakte Klasse => hat kein korrespondierendes DB-Objekt.
   establish_connection(:knz) # Gegen die KNZ verbinden
 
-  # Führt den "DoubleSerNoCheck"-Report aus und liefert das Resultat zurück.
+  # Führt den KNZ-Query aus und liefert das Resultat zurück.
   # Dieses ist vom Typ ActiveRecord::Result
-  def self.getDoubleSerNoCheck(shpt_req_nr)
-    logger.info("Setze SQL gegen KNZ ab (Parameter: '#{shpt_req_nr}')")
-    result=connection.select_all("SELECT DISTINCT BON_COLLI_INFO_VIEW.SHPT_REQ_NR,
-        BON_COLLI_INFO_VIEW.COLLI_NR,
-        BON_COLLI_INFO_VIEW.INFO_NR,
-        BON_COLLI_INFO_VIEW.EPOS_ID_NR,
-        BON_COLLI_INFO_VIEW.PERSONAL_ID,
-        BON_AUFTRAG_VIEW.VERL_DT,
-        BON_AUFTRAG_VIEW.VERL_ZT,
-        BON_AUFTRAG_VIEW.PACK_PERS_ID,
-        BON_AUFTRAG_VIEW.SHPT_CARRIER_CD,
-        BON_AUFTRAG_VIEW.PA_SHPT_RELATION_CD,
-        BON_EPOS_VIEW.TE_NR,
-        BON_EPOS_VIEW.PACK_SPUR_CD,
-        BON_EPOS_VIEW.PART_NR
-      FROM (LGCADMIN.BON_COLLI_INFO_VIEW BON_COLLI_INFO_VIEW
-      INNER JOIN LGCADMIN.BON_AUFTRAG_VIEW BON_AUFTRAG_VIEW
-      ON (BON_COLLI_INFO_VIEW.DIV_CD      =BON_AUFTRAG_VIEW.DIV_CD)
-      AND (BON_COLLI_INFO_VIEW.SHPT_REQ_NR=BON_AUFTRAG_VIEW.SHPT_REQ_NR))
-      INNER JOIN LGCADMIN.BON_EPOS_VIEW BON_EPOS_VIEW
-      ON ((BON_COLLI_INFO_VIEW.SHPT_REQ_NR =BON_EPOS_VIEW.SHPT_REQ_NR)
-      AND (BON_COLLI_INFO_VIEW.COLLI_NR    =BON_EPOS_VIEW.COLLI_NR))
-      AND (BON_COLLI_INFO_VIEW.EPOS_ID_NR  =BON_EPOS_VIEW.EPOS_ID_NR)
-      WHERE BON_COLLI_INFO_VIEW.SHPT_REQ_NR=#{connection.quote(shpt_req_nr)}
+  def self.getDoubleSerNoCheck(shpt_req_nr, colli_nr)
+    logger.info("Setze SQL gegen KNZ ab (Parameter: SHPT-REQ-NR '#{shpt_req_nr}'; COLLI-NR '#{colli_nr}')")
+    result=connection.select_all("
+      SELECT
+        trim(bon_colli_view.shpt_req_nr)    \"shpt_req_nr\",
+        trim(bon_colli_view.colli_nr)       \"colli_nr\",
+        trim(bon_colli_view.div_cd)         \"div_cd\",
+        trim(bon_colli_view.vers_pal_nr)    \"vers_pal_nr\",
+        trim(bon_colli_view.colli_art_cd)   \"colli_art_cd\",
+        trim(bon_epos_view.epos_id_nr)      \"epos_id_nr\",
+        trim(bon_epos_view.epos_soll_mg)    \"epos_soll_mg\",
+        trim(bon_epos_view.epos_ist_mg)     \"epos_ist_mg\",
+        trim(bon_epos_view.pack_spur_cd)    \"pack_spur_cd\",
+        trim(bon_epos_view.part_nr)         \"part_nr\",
+        trim(bon_auftrag_view.tour_id_nr)   \"tour_id_nr\",
+        trim(bon_tour_id_view.vers_soll_dt) \"vers_soll_dt\",
+        trim(bon_tour_id_view.shpt_carrier_cd)|| trim(bon_tour_id_view.lkw_id_nr) \"lkw_id\",
+        trim(bon_colli_view.verl_dt)||trim(bon_colli_view.verl_zt)                \"verl_dt\",
+        trim(bon_auftrag_view.ship_dt)                \"ship_dt\",
+        trim(bon_lkw_view.lkw_ist_abfahrt_dt_zt)      \"lkw_ist_abfahrt_dt_zt\",
+        trim(bon_lkw_view.lkw_kennzeichen_tx)         \"lkw_kennzeichen_tx\"
+      FROM lgcadmin.bon_colli_view
+      INNER JOIN lgcadmin.bon_epos_view
+      ON bon_colli_view.div_cd        = bon_epos_view.div_cd
+      AND bon_colli_view.orig_appl_nm = bon_epos_view.orig_appl_nm
+      AND bon_colli_view.shpt_req_nr  = bon_epos_view.shpt_req_nr
+      AND bon_colli_view.colli_nr     = bon_epos_view.colli_nr
+      INNER JOIN lgcadmin.bon_auftrag_view
+      ON bon_colli_view.div_cd        = bon_auftrag_view.div_cd
+      AND bon_colli_view.orig_appl_nm = bon_auftrag_view.orig_appl_nm
+      AND bon_colli_view.shpt_req_nr  = bon_auftrag_view.shpt_req_nr
+      INNER JOIN lgcadmin.bon_tour_id_view
+      ON bon_auftrag_view.tour_id_nr = bon_tour_id_view.tour_id_nr
+      AND bon_auftrag_view.site_cd   = bon_tour_id_view.site_cd
+      INNER JOIN lgcadmin.bon_lkw_view
+      ON bon_tour_id_view.vers_soll_dt     = bon_lkw_view.vers_soll_dt
+      AND bon_tour_id_view.shpt_carrier_cd = bon_lkw_view.shpt_carrier_cd
+      AND bon_tour_id_view.lkw_id_nr       = bon_lkw_view.lkw_id_nr
+      AND bon_tour_id_view.site_cd         = bon_lkw_view.site_cd
+      WHERE bon_colli_view.colli_nr        = #{connection.quote(colli_nr)}
+      OR bon_colli_view.shpt_req_nr        = #{connection.quote(shpt_req_nr)}
     ")
   end
 

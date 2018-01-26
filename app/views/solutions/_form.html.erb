@@ -3,14 +3,14 @@
     <%= form_for(@solution) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
+        <%= f.label :description, "Beschreibung" %>
+        <%= f.text_area(:description, :disabled => @readonly_form, class: 'form-control') %>
+
         <%= f.label :load_id, "Load ID" %>
         <%= f.text_field(:load_id, :disabled => @readonly_form, class: 'form-control') %>
 
         <%= f.label :pid_info, "PID-Informationen" %>
         <%= f.text_area(:pid_info, :disabled => @readonly_form, class: 'form-control') %>
-
-        <%= f.label :description, "Beschreibung" %>
-        <%= f.text_field(:description, :disabled => @readonly_form, class: 'form-control') %>
 
         <%= f.label :pallet_id, "Paletten-ID" %>
         <%= f.text_area(:pallet_id, :disabled => @readonly_form, class: 'form-control') %>

@@ -5,26 +5,42 @@
 
 <div class="container">
   <% unless @resultData.blank? %>
-      <table class="table table-hover">
+      <table class="table table-condensed table-hover">
         <thead>
-        <tr>
+        <tr class="row">
+          <th>DIV-CD</th>
           <th>ShptReq-Nr</th>
           <th>Colli-Nr</th>
-          <th>TE-Nr</th>
+          <th>Vers.-Palette</th>
+          <th>Colli-Art</th>
+          <th>EPOS-ID</th>
+          <th>Packspur</th>
           <th>Part-Nr</th>
-          <th>Verladedatum</th>
-          <th>Verladezeit</th>
+          <th>Tour-ID</th>
+          <th>Vers.-Solldatum</th>
+          <th>LKW-ID</th>
+          <th>Verl.-Datum</th>
+          <th>Vers.-Datum</th>
+          <th>LKW-Kennz.</th>
         </tr>
         </thead>
         <tbody>
           <% @resultData.each do |row| %>
-              <tr>
+              <tr class="row">
+                <td><%= row.fetch("div_cd") %></td>
                 <td><%= row.fetch("shpt_req_nr") %></td>
                 <td><%= row.fetch("colli_nr") %></td>
-                <td><%= row.fetch("te_nr") %></td>
+                <td><%= row.fetch("vers_pal_nr") %></td>
+                <td><%= row.fetch("colli_art_cd") %></td>
+                <td><%= row.fetch("epos_id_nr") %></td>
+                <td><%= row.fetch("pack_spur_cd") %></td>
                 <td><%= row.fetch("part_nr") %></td>
+                <td><%= row.fetch("tour_id_nr") %></td>
+                <td><%= row.fetch("vers_soll_dt") %></td>
+                <td><%= row.fetch("lkw_id") %></td>
                 <td><%= row.fetch("verl_dt") %></td>
-                <td><%= row.fetch("verl_zt") %></td>
+                <td><%= row.fetch("ship_dt") %></td>
+                <td><%= row.fetch("lkw_kennzeichen_tx") %></td>
               </tr>
           <% end  %>
         </tbody>

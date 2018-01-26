@@ -41,6 +41,6 @@ class InvestigationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def investigation_params
-    params.require(:investigation).permit(:query_param, :query_result)
+    params.require(:investigation).permit(:query_param, :query_param_2, :query_result)
   end
 end

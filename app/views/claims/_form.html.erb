@@ -13,7 +13,8 @@
         %>
 
         <%= f.label "Beschreibung" %>
-        <%= f.text_field(:description, class: 'form-control') %>
+        <%= f.text_area(:description, class: 'form-control') %>
+
         <%= f.submit "Speichern", class: "btn btn-primary" %>
     <% end %>
   </div>

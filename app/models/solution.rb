@@ -4,8 +4,8 @@ class Solution < ApplicationRecord
   belongs_to :claim
 
   # Validations
-  # Zumindest PID/Load-ID-Daten und eine Beschreibung sollten erfasst werden
-  validates :pid_info, :load_id, :description, presence:true
+  # Zumindest eine Beschreibung sollten erfasst werden
+  validates :description, presence:true
 
   # Typ der Beschädigung
   enum damage_type: {

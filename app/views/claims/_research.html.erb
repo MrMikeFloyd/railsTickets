@@ -8,6 +8,7 @@
         <thead>
           <tr>
             <th>Erstellungsdatum</th>
+            <th>Suchparameter</th>
             <th>Aktionen</th>
           </tr>
         </thead>
@@ -15,6 +16,14 @@
           <% @claim.investigations.each do |investigation| %>
             <tr>
               <td><%= investigation.created_at %></td>
+              <td>
+                <% unless investigation.query_param.empty? %>
+                    PID: <b><%= investigation.query_param %></b>
+                <% end  %>
+                <% unless investigation.query_param_2.empty? %>
+                    Colli-Nr: <b><%= investigation.query_param_2 %></b>
+                <% end  %>
+              </td>
               <td>
                 <%= link_to 'Anzeigen', investigation, class: "btn btn-default btn-sm" %>
                 <% unless @claim.is_terminated? %>
