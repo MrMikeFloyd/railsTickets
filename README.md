@@ -54,9 +54,13 @@ Zum Connect gegen Oracle ist der folgende Guide einzuhalten, da Zusatzsoftware a
 
 Sofern `rails` installiert ist, sollten die folgenden Befehle reichen:
 
+1. Anwendung vorbereiten
 ```
 bundle install
 bin/rails db:migrate
 bin/rails db:seed
-foreman start -p <port> OR rails server
 ```
+
+2. Anwendung ausführen
+
+Zum Ausführen der Anwendung entweder `foreman start -p <port>` oder `rails server` verwenden.
